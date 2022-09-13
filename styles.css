@@ -1,9 +1,48 @@
+/* base styles */
+:root {
+  --primary-clr-1: hsl(180, 62%, 55%); /* cyan */
+  --primary-clr-2: hsl(0, 78%, 62%); /* red */
+  --primary-clr-3: hsl(34, 97%, 64%); /* orange */
+  --primary-clr-4: hsl(212, 86%, 64%); /* blue */
+  --neutral-clr-1: hsl(234, 12%, 34%); /* very dark blue */
+  --neutral-clr-2: hsl(229, 6%, 66%); /* grayish blue */
+  --neutral-clr-3: hsl(0, 0%, 98%); /* very light gray */
+  --accent-clr: hsl(229, 6%, 66%, 0.5);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font: inherit;
 }
 
 *::before, *::after {
   box-sizing: inherit;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  background-color: var(--neutral-clr-3);
+  height: auto;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+.container {
+  --max-width: 1200px;
+  --padding-inline: 2rem;
+  --padding-block: 2rem;
+
+  width: min(var(--max-width), 100% - var(--padding-inline));
+  padding-block: var(--padding-block);
+  margin-inline: auto;
+}
+
+/* general styles */
