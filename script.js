@@ -12,7 +12,6 @@ function Book(title, author, pages, isRead = false) {
   }
 }
 
-
 function addBookToLibrary() {
   // take user input
   let title = prompt("Enter book title:");
@@ -22,4 +21,8 @@ function addBookToLibrary() {
 
   // add book to array
   myLibrary.push(new Book(title, author, pages, isRead));
+}
+
+function showBooks() {
+  myLibrary.forEach(book => console.log(book));
 }
