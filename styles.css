@@ -25,6 +25,7 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 0.9375rem;
+  background-color: hsl(0, 0%, 100%);
   background-color: var(--neutral-clr-3);
   height: auto;
   min-height: 100vh;
@@ -38,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 .container {
   --max-width: 1200px;
   --padding-inline: 2rem;
-  --padding-block: 2rem;
+  --padding-block: 1rem;
 
   width: min(var(--max-width), 100% - var(--padding-inline));
   padding-block: var(--padding-block);
@@ -46,3 +47,40 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* general styles */
+header {
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+header .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+header .button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+}
+
+button[name="book"] {
+  background-color: transparent;
+  border: 0;
+  border-left: 0.35rem solid var(--primary-clr-4);
+  padding: 0.25rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  transition: all 0.2s;
+}
+
+button[name="book"]:hover {
+  background-color: var(--primary-clr-4);
+  color: hsl(0, 0%, 100%);
+  font-weight: 600;
+  border-left: 0;
+}
+
