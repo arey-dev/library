@@ -20,10 +20,10 @@
     <div class="container">
       <h1 class="logo-text">My Library</h1>
       <div class="button-wrapper">
-        <button class="button button--blue">Add New Book</button>
+        <button id="show-prompt-btn" class="button button--blue">Add New Book</button>
       </div>
       <div class="prompt-form-container">
-        <form class="prompt-form">
+        <form class="prompt-form" name="book">
           <h2>Book Form</h2>
           <p class="prompt-form-control">
             <label for="title">Title</label>
@@ -49,8 +49,8 @@
             </span>
           </p>
           <p class="prompt-button-control">
-            <input class="button button--orange" type="submit" value="Submit">
-            <input class="button button--red" type="button" value="Cancel">
+            <input id="submit-btn" class="button button--orange" type="button" value="Submit">
+            <input id="cancel-btn" class="button button--red" type="button" value="Cancel">
           </p>
         </form>
       </div>
