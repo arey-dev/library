@@ -20,7 +20,39 @@
     <div class="container">
       <h1 class="logo-text">My Library</h1>
       <div class="button-wrapper">
-        <button name="book">Add New Book</button>
+        <button class="button button--blue">Add New Book</button>
+      </div>
+      <div class="prompt-form-container">
+        <form class="prompt-form">
+          <h2>Book Form</h2>
+          <p class="prompt-form-control">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" required>
+          </p>
+          <p class="prompt-form-control">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required>
+          </p>
+          <p class="prompt-form-control">
+            <label for="pages">Pages</label>
+            <input type="text" name="pages" id="pages" required>
+          </p>
+          <p class="prompt-form-control">
+            Have you read the book?
+            <span class="radio-control">
+              <label>
+                Yes <input type="radio" name="status" value="1">
+              </label>
+              <label>
+                No <input type="radio" name="status" value="">
+              </label>
+            </span>
+          </p>
+          <p class="prompt-button-control">
+            <input class="button button--orange" type="submit" value="Submit">
+            <input class="button button--red" type="button" value="Cancel">
+          </p>
+        </form>
       </div>
     </div>
   </header>
