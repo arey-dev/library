@@ -57,7 +57,7 @@ header .container {
   grid-template-columns: repeat(2, 1fr);
 }
 
-header .button-container {
+header .button-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
