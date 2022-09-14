@@ -53,35 +53,74 @@ header {
 header .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  position: relative;
 }
 
 header .button-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1rem;
 }
 
 .logo-text {
   font-size: 1.5rem;
 }
 
-button[name="book"] {
-  background-color: transparent;
+.prompt-form-container {
+  display: none;
+  position: absolute;
+  top: 90%;
+  right: 5%;
+  background-color: hsl(0, 0%, 100%);
+  width: 20rem;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  z-index: 99;
+}
+
+.prompt-form h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prompt-form input:focus {
+  outline: 1px solid var(--neutral-clr-2);
+}
+
+.prompt-form-control {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.prompt-form-control label {
+  margin-bottom: 0.25rem;
+}
+
+.prompt-form-control input[type="text"] {
+  display: block;
+  width: 100%;
   border: 0;
-  border-left: 0.35rem solid var(--primary-clr-4);
-  padding: 0.25rem 1rem;
-  transition: all 0.2s;
-  color: inherit;
+  border-bottom: 1px solid var(--neutral-clr-2);
+  padding: 0.25rem;
 }
 
-button[name="book"]:hover {
-  background-color: var(--primary-clr-4);
-  color: hsl(0, 0%, 100%);
-  font-weight: 600;
-  border-left: 0;
+.radio-control {
+  display: block;
+  margin-bottom: 1rem;
 }
 
+.radio-control > label {
+  margin-right: 1rem;
+}
+
+.prompt-form-control input[type="radio"] {
+  vertical-align: middle;
+}
+
+.prompt-button-control {
+  display: flex;
+  justify-content: space-around;
+}
 
 .grid-wrapper {
   display: grid;
@@ -120,7 +159,46 @@ h3 .book-info {
   font-weight: 400;
 }
 
+/* buttons */
+.button {
+  background-color: transparent;
+  color: inherit;
+  padding: 0.25rem 1rem;
+  border: 0;
+  transition: all 0.2s ease-out;
+}
+
+.button:hover {
+  color: hsl(0, 0%, 100%);
+  font-weight: 600;
+}
+
+.button--blue {
+  border-left: 0.35rem solid var(--primary-clr-4);
+}
+
+.button--blue:hover {
+  background-color: var(--primary-clr-4);
+}
+
+.button--orange {
+  border-left: 0.35rem solid var(--primary-clr-3);
+}
+
+.button--orange:hover {
+  background-color: var(--primary-clr-3);
+}
+
+.button--red {
+  border-left: 0.35rem solid var(--primary-clr-2);
+}
+
+.button--red:hover {
+  background-color: var(--primary-clr-2);
+}
+
+
 /* box shadow */
-header, button[name="book"], .book {
+header, .button, .prompt-form-container, .book {
   box-shadow: var(--neutral-clr-2) 0px 1px 4px;
 }
