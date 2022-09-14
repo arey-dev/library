@@ -1,9 +1,5 @@
 // array for books
 const myLibrary = [];
-const book1 = new Book("To Kill A Mockingbird", "Harper Lee", "281", false);
-const book2 = new Book("Gone Girl", "Gillian Flynn", "432", true);
-myLibrary.push(book1);
-myLibrary.push(book2);
 
 function Book(title, author, pages, isRead = false) {
   this.title = title;
@@ -13,14 +9,23 @@ function Book(title, author, pages, isRead = false) {
 }
 
 function addBookToLibrary() {
-  // take user input
-  let title = prompt("Enter book title:");
-  let author = prompt("Enter author:");
-  let pages = prompt("Enter number of pages:");
-  let isRead = confirm("Have you read read the book?");
+  // get form
+  const form = document.forms.book;
+
+  // get inputs
+  const title = form.elements.title;
+  const author = form.elements.author;
+  const pages = form.elements.pages;
+  const status = form.elements.status
 
   // add book to array
-  myLibrary.push(new Book(title, author, pages, isRead));
+  myLibrary.push(new Book(title.value, author.value, pages.value, status.value));
+
+  // reset input fields
+  title.value = '';
+  author.value = '';
+  pages.value = '';
+  status.value = '';
 }
 
 // generate a card for book
@@ -61,4 +66,23 @@ function showBooks() {
 
     shelve.append(card);
   }
+}
+
+const promptBtn = document.querySelector('#show-prompt-btn');
+const submitBtn = document.querySelector('#submit-btn');
+const cancelBtn = document.querySelector('#cancel-btn');
+
+promptBtn.onclick = function() {
+  const formContainer = document.querySelector('.prompt-form-container');
+
+  if(formContainer.style.display !== 'block') {
+    formContainer.style.display = 'block';
+  } else {
+    formContainer.style.display = '';
+  }
+}
+
+submitBtn.onclick = function() {
+  addBookToLibrary();
+  showBooks();
 }
