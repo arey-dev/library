@@ -8,6 +8,10 @@ function Book(title, author, pages, isRead = false) {
   this.isRead = isRead; 
 }
 
+Book.prototype.changeStatus = function() {
+  this.isRead = (this.isRead) ? false : true;
+}
+
 function addBookToLibrary() {
   // get form
   const form = document.forms.book;
@@ -16,10 +20,10 @@ function addBookToLibrary() {
   const title = form.elements.title;
   const author = form.elements.author;
   const pages = form.elements.pages;
-  const status = form.elements.status
+  const status = (form.elements.status.value === "1");
 
   // add book to array
-  myLibrary.push(new Book(title.value, author.value, pages.value, status.value));
+  myLibrary.push(new Book(title.value, author.value, pages.value, status));
 
   // reset input fields
   title.value = '';
