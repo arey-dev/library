@@ -219,3 +219,15 @@ h3 .book-info {
 .button--remove:hover {
   background-color: var(--primary-clr-2);
 }
+
+.button--change {
+  position: absolute;
+  top: 72%;
+  left: 74%;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.35rem;
+}
+
+.button--change:hover {
+  background-color: var(--primary-clr-1);
+}
