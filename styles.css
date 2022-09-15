@@ -46,6 +46,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* general styles */
+
+/* box shadow */
+header,
+.button,
+.prompt-form-container,
+.book {
+  box-shadow: var(--neutral-clr-2) 0px 1px 4px;
+}
+
 header {
   background-color: hsl(0, 0%, 100%);
 }
@@ -137,6 +146,7 @@ header .button-wrapper {
 }
 
 .book {
+  position: relative;
   background-color: hsl(0, 0%, 100%);
   color: var(--neutral-clr-1);
   width: 18rem;
@@ -197,8 +207,15 @@ h3 .book-info {
   background-color: var(--primary-clr-2);
 }
 
+.button--remove {
+  position: absolute;
+  top: 7%;
+  left: 85%;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  box-shadow: unset;
+}
 
-/* box shadow */
-header, .button, .prompt-form-container, .book {
-  box-shadow: var(--neutral-clr-2) 0px 1px 4px;
+.button--remove:hover {
+  background-color: var(--primary-clr-2);
 }
