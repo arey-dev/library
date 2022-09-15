@@ -26,11 +26,19 @@ function addBookToLibrary() {
   myLibrary.push(new Book(title.value, author.value, pages.value, status));
 
   // reset input fields
-  title.value = '';
-  author.value = '';
-  pages.value = '';
-  status.value = '';
+  form.reset()
 }
+
+function togglePrompt() {
+  const formContainer = document.querySelector('.prompt-form-container');
+
+  if(formContainer.style.display !== 'block') {
+    formContainer.style.display = 'block';
+  } else {
+    formContainer.style.display = '';
+  }
+}
+
 
 // generate a card for book
 // accepts a Book obj
@@ -55,15 +63,20 @@ function generateCard(book, i) {
 
   const p_status = document.createElement('p');
   const status = (book.isRead) ? 'Finished' : 'Not Finished';
-  p_status.innerHTML = `Status: <em class="book-info">${status}</em>`;
+  p_status.innerHTML = `Status: <em data-book-info="status" class="book-info">${status}</em>`;
   card.append(p_status);
+
+  const btn_change = document.createElement('button');
+  btn_change.classList.add('button');
+  btn_change.classList.add('button--change');
+  btn_change.textContent = 'Change';
+  card.append(btn_change);
 
   const btn_remove = document.createElement('button');
   btn_remove.classList.add('button');
   btn_remove.classList.add('button--remove');
   btn_remove.textContent = 'X';
   card.append(btn_remove);
-
   return card;
 }
 
@@ -87,38 +100,48 @@ function resetBookId() {
   }
 }
 
+const booksContainer = document.querySelector('.grid-wrapper');
 const promptBtn = document.querySelector('#show-prompt-btn');
 const submitBtn = document.querySelector('#submit-btn');
 const cancelBtn = document.querySelector('#cancel-btn');
-const booksContainer = document.querySelector('.grid-wrapper');
-
 
 promptBtn.onclick = function() {
-  const formContainer = document.querySelector('.prompt-form-container');
-
-  if(formContainer.style.display !== 'block') {
-    formContainer.style.display = 'block';
-  } else {
-    formContainer.style.display = '';
-  }
+  togglePrompt();
 }
+
+cancelBtn.onclick = function() {
+  togglePrompt();
+  document.forms.book.reset();
+};
 
 submitBtn.onclick = function() {
   addBookToLibrary();
   showBooks();
-}
+};
+
 
 booksContainer.addEventListener('click', function (event) {
   const target = event.target;
-  const card = target.closest('.book');
-  const id = card.getAttribute('data-id');
+  const id = target.closest('.book').getAttribute('data-id');
 
   if(target.classList.contains('button--remove')) {
     const confirmed = confirm("Remove this book?");
+
     if(confirmed) {
       myLibrary.splice(id, 1);
-      card.remove();
+      target.closest('.book').remove();
       resetBookId();
+    } else return;
+  }
+
+  if(target.classList.contains('button--change')) {
+    const confirmed = confirm("Change read status of this book?");
+    if(confirmed) {
+      const bookObj = myLibrary[id];
+      const status = target.closest('.book').querySelector('em[data-book-info="status"]');
+      
+      bookObj.changeStatus();
+      status.textContent = (bookObj.isRead) ? `Finished` : `Not Finished`;
     } else return;
   }
 });
