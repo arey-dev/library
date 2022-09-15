@@ -31,8 +31,9 @@ function addBookToLibrary() {
 // generate a card for book
 // accepts a Book obj
 // returns a an article element with book info
-function generateCard(book) {
+function generateCard(book, i) {
   const card = document.createElement('article');
+  card.setAttribute('data-id', i);
   card.classList.add('book');
   card.classList.add('flex');
 
@@ -53,6 +54,12 @@ function generateCard(book) {
   p_status.innerHTML = `Status: <em class="book-info">${status}</em>`;
   card.append(p_status);
 
+  const btn_remove = document.createElement('button');
+  btn_remove.classList.add('button');
+  btn_remove.classList.add('button--remove');
+  btn_remove.textContent = 'X';
+  card.append(btn_remove);
+
   return card;
 }
 
@@ -62,15 +69,25 @@ function showBooks() {
 
   const books_length = myLibrary.length;
   for(let i = 0; i < books_length; i++) {
-    const card = generateCard(myLibrary[i]); 
+    const card = generateCard(myLibrary[i], i); 
 
     shelve.append(card);
+  }
+}
+
+function resetBookId() {
+  const books = document.querySelectorAll('article.book.flex');
+  const books_length = myLibrary.length;
+  for(let i = 0; i < books_length; i++) {
+    books[i].setAttribute('data-id', i);
   }
 }
 
 const promptBtn = document.querySelector('#show-prompt-btn');
 const submitBtn = document.querySelector('#submit-btn');
 const cancelBtn = document.querySelector('#cancel-btn');
+const booksContainer = document.querySelector('.grid-wrapper');
+
 
 promptBtn.onclick = function() {
   const formContainer = document.querySelector('.prompt-form-container');
@@ -86,3 +103,18 @@ submitBtn.onclick = function() {
   addBookToLibrary();
   showBooks();
 }
+
+booksContainer.addEventListener('click', function (event) {
+  const target = event.target;
+  const card = target.closest('.book');
+  const id = card.getAttribute('data-id');
+
+  if(target.classList.contains('button--remove')) {
+    const confirmed = confirm("Remove this book?");
+    if(confirmed) {
+      myLibrary.splice(id, 1);
+      card.remove();
+      resetBookId();
+    } else return;
+  }
+});
